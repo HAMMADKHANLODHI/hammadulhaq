@@ -35,7 +35,7 @@ async function getProfileData() {
 }
 
 export default function ProfilePage() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const[isLogin,setIsLogin]=useState(false);
   useEffect(()=>{
     async function loadData() {
@@ -86,7 +86,7 @@ export default function ProfilePage() {
         <section>
           <h2 className={sectionTitle}>Technical Skills</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {data.Skills.map((skill, i) => (
+            {data.Skills.map((skill:any, i:number) => (
               <div key={i} className="bg-amber-100 p-4 rounded-xl text-center">
                 <h3 className="font-bold text-amber-950">{skill.name}</h3>
                 <p className="text-amber-600 font-black">{skill.level}%</p>
@@ -98,7 +98,7 @@ export default function ProfilePage() {
         {/* EXPERIENCE SECTION */}
         <section className="space-y-6">
           <h2 className={sectionTitle}>Work Experience</h2>
-          {data.Experience.map((exp, i) => (
+          {data.Experience.map((exp:any, i:number) => (
             <div key={i} className={cardBg}>
               <h3 className="text-xl font-bold text-amber-900">{exp.role}</h3>
               <h4 className="text-amber-600 font-bold">{exp.company}</h4>
@@ -111,7 +111,7 @@ export default function ProfilePage() {
         {/* EDUCATION SECTION */}
         <section>
           <h2 className={sectionTitle}>Education</h2>
-          {data.Education.map((edu, i) => (
+          {data.Education.map((edu:any, i:number) => (
             <div key={i} className="border-b border-amber-200 pb-4 mb-4 last:border-0">
               <h3 className="text-lg font-bold text-amber-900">{edu.school}</h3>
               <p className="text-sm text-amber-600">{edu.startDate} to {edu.endDate}</p>
@@ -125,7 +125,7 @@ export default function ProfilePage() {
           <div className="col-span-full">
             <h2 className={sectionTitle}>My Services</h2>
           </div>
-          {data.Services.map((service, i) => (
+          {data.Services.map((service:any, i:number) => (
             <div key={i} className="bg-amber-950 text-white p-6 rounded-2xl shadow-lg">
               <span className="text-3xl mb-4 block">{service.icon}</span>
               <h3 className="text-xl font-bold text-amber-400 mb-2">{service.title}</h3>
@@ -138,7 +138,7 @@ export default function ProfilePage() {
         <section>
           <h2 className={sectionTitle}>Portfolio</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {data.Portfolio.map((project, i) => (
+            {data.Portfolio.map((project:any, i:number) => (
               <div key={i} className="border-2 border-amber-200 border-dashed p-4 rounded-xl hover:bg-white transition-colors">
                 <h3 className="font-bold text-amber-950">{project.name}</h3>
                 <p className="text-xs uppercase text-amber-500 mb-2">{project.category}</p>

@@ -12,7 +12,7 @@ export async function GET() {
       },{status:200})
 
   }catch(error:any){
-    console.error("error in get request : ",e);
+    console.error("error in get request : ",error.message);
     return NextResponse.json(
       {success:false , error:"failed to fetch request"},{status:500}
     )
