@@ -1,5 +1,5 @@
 "use client";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../globals.css";
 import Image from "next/image";
 import ScrollProgress from "./components/ScrollProgress";
@@ -186,6 +186,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </nav>
 
         {children}
+        <SpeedInsights />
         </PublicProvider>
       </body>
     </html>

@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@quranjs/api": "^2.1.0",
     "@reduxjs/toolkit": "^2.11.2",
+    "@vercel/speed-insights": "^2.0.0",
     "argon2": "^0.44.0",
     "framer-motion": "^12.31.0",
     "mongoose": "^9.1.5",
