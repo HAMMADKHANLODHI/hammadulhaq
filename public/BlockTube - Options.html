@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/options.html -->
+<html data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/codemirror.css" rel="stylesheet" type="text/css">
+    <link href="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/dialog.css" rel="stylesheet" type="text/css">
+    <link href="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/fullscreen.css" rel="stylesheet" type="text/css">
+    <link href="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/style.css" rel="stylesheet" type="text/css">
+    <title>BlockTube - Options</title>
+    <link rel="shortcut icon" type="image/png" href="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/assets/icons/16.png">
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="header-text"><img id="logo-img" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/assets/icons/128.png"><span id="logo-text">BlockTube</span></h1>
+      <div id="header-menu">
+        <a class="nav-item" target="_blank" href="https://github.com/amitbl/blocktube/wiki">How to use</a>
+        <a class="nav-item" target="_blank" href="https://github.com/amitbl/blocktube/releases">Changelog (v0.4.8)</a>
+      </div>
+    </div>
+    <div id="main">
+      <form id="login" style="display: none">
+        <legend>Login</legend>
+        <fieldset>
+          <div>
+            <label class="block-label" style="margin-right:5px" for="pass_login">Password</label>
+            <input id="pass_login" type="password" size="32" autocomplete="off" class="form-text">
+          </div>
+          <div>
+            <input type="submit" id="send_login" value="Login">
+            <div class="status-text" id="status_login"></div>
+          </div>
+        </fieldset>
+      </form>
+      <form id="options" style="">
+        <legend>Filter options</legend>
+        <fieldset>
+          <div class="tabset" id="tabbed-filters-parent">
+            <div class="tab-menu" id="tabbed-filters-menu">
+              <input type="radio" name="filter-tab" id="tab-title" aria-controls="title-tab-content" checked="">
+              <label style="border-top: 1px solid var(--borders)" for="tab-title">Video title</label>
+
+              <input type="radio" name="filter-tab" id="tab-channel-name" aria-controls="channel-name-tab-content">
+              <label for="tab-channel-name">Channel name</label>
+
+              <input type="radio" name="filter-tab" id="tab-video-id" aria-controls="videoid-tab-content">
+              <label for="tab-video-id">Video ID</label>
+
+              <input type="radio" name="filter-tab" id="tab-channel-id" aria-controls="channelid-tab-content">
+              <label for="tab-channel-id">Channel ID</label>
+
+              <input type="radio" name="filter-tab" id="tab-comment" aria-controls="comment-tab-content">
+              <label for="tab-comment">Comment content</label>
+
+              <input type="radio" name="filter-tab" id="tab-advanced" aria-controls="advanced-tab-content">
+              <label for="tab-advanced">
+                Advanced Blocking
+              </label>
+
+            </div>
+            <div class="tab-panels" id="tabbed-filters-content">
+              <section id="title-tab-content" class="tab-panel" style="display: block;">
+                <div>
+                  <textarea id="title" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap cm-darktheme CodeMirror-focused" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 154px; left: 191.344px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 800px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="false"><div class="CodeMirror-sizer" style="margin-left: 29px; padding-right: 15px; padding-bottom: 0px; margin-bottom: -15px; border-right-width: 35px; min-height: 800px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like">x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 162.344px; top: 240px; height: 24px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -29px; width: 29px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" aria-hidden="true" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">/.*(\bhot\b|\bsex\b|\bass\b|\btit\b|\bstar\b|\bbutt\b|imran\s?riaz(\s?khan)?|sabir\s?shakir|moeed\s?pirzada|sami\s?ibrahim|arshad\s?sharif|shahid\s?masood|dr\s?danish|tariq\s?mateen|siddique\s?jan|pornstar|maleeha\s?hashmey|makhdoom\s?shahab|rj\s?ali\s?munawar|shahzad\s?akbar|shahbaz\s?gill|kamran\s?khan|shahzeb\s?khanzada|kashif\s?abbasi|waheed\s?dogar|iqrar\s?ul\s?hassan|mansoor\s?ali\s?khan|ajmal\s?jami|talat\s?hussain|syed\s?fahad\s?hussain|Engr\s?Mirza|Pakistan’s\s?Debt|Pakistan’s\s?crisis|imf|Shehzadi\s?Rai|lgbt|lgbtq|aurat\s?march|Engr\s?Mirza's|sahafi|lifafa|𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿\s?𝗠𝘂𝗵𝗮𝗺𝗺𝗮𝗱\s?𝗔𝗹𝗶\s?𝗠𝗶𝗿𝘇𝗮|t20|cricket|leak\s?video|red-light\s?area|red\s?light\s?area|Engineer\s?Muhammad\s?Ali\s?Mirza|Muhammad\s?Ali\s?Mirza|Muhammad\s?Ali\s?Mizra|pak\s?vs|pakistan\s?vs|pakistan's\s?vs|india\s?vs|ind\s?vs|vs\s?ind|vs\s?india|vs\s?pak|vs\s?pakistan's|vs\s?pakistan|mia\s?khalifa|Engineer\s?Muhammad\s?Ali\s?Mizra|ary\s?news|ali\s?mirza|engineer\s?mirza|geo\s?news|bol\s?news|express\s?news| Hafiz\s?Hamdullah|Pakistan’s\s?Military|prostitution|Adiala\s?Jail|dunya\s?news|hum\s?news|ssg|brothel|Shehzad\s?Ghias|isi|Pakistan’s\s?Economy|samaa\s?tv|Maj\s?Gen|siraj\s?ul\s?haq|khadim\s?rizvi|saad\s?rizvi|pervez\s?elahi|عمران خان|moonis\s?elahi|[\u0900-\u0DFF]|[\u0400-\u04FF]|\b(cricket|psl|ipl|t20|odi|test match|batting|bowling|wicket|icc|bcci|pcb|nz vs pak|ind vs pak|cricketer)\b|hamza\s?shahbaz|Mehrub\s?Moiz\s?Awan|Mehrub\s?Awan|Mehrub\s?Moiz|aleem\s?khan|jahangir\s?tareen|Human\s?Trafficking|ali\s?amin\s?gandapur|prostitutes|prostitute|omar\s?ayub|gohar\s?ali\s?khan|pti|pmln|ppp|mqm|tlp|ji\s?pakistan|Operation\s?Sindoor|establishment|bajwa|faiz\s?hameed|asim\s?munir|Reham\s?Khan|dharna|jalsa|pakistan\s?vs\s?india|india\s?vs\s?pakistan|umairi|Johnny\s?sins|Johnny\s?sin|umari|umairy|call\s?girl|Human\s?traffickers|pakistani\s?media|red-light|red\s?light|maria\s?b|maria\s?.\s?b|maria'b|rigging|form\s?45|form\s?47|pakistan'?s?\s?politic(s|al)|pakistan'?s?\s?perspective|adiala|(pakistan\s?)?cricket|babar\s?azam|ind\s?vs\s?pak|pak\s?vs\s?ind|indian\s?media|indian\s?media's|Pakistan\s?News|Terrorist\s?Attack|rizwan|p\*rn|Onlyf\*ns|tabde\*li|shaheen|world\s?cup|icc|pcb|psl|match\s?highlights|p[ \-\*\?\_]star|p[ \-\*\?\_]?star|p\*rnstar|onlyfans|Onlyf*ns|p-star|pstar|p*rnfilm|intercourse|banging|prem|p\*rn|sex\s?actresses|sex\s?stars|Pakistan’s\s?Politics|Pakistani\s?Politics|sexual|Pakistan\s?Politics|Pakistan’s\s?perspective|sex\s?star|pregnancy|lesbian|sohail\s?afridi|penetration|ejaculation|only[\- \*\?\_]?f[\*a]ns|love\s?actresses|Jamaat-e-Islami|pakistan's\s?pm|pakistan\s?pm|orgasm|Pakistan’s\s?Political|climax|hardcore|incest|love\s?star|love\s?star|creampie|facial|fetish|bdsm|anal|oral\s?sex|dominatrix|handjob|hamid\s?mir|irshad\s?bhatti|blowjob|asim\s?munir|deepthroat|fingering|masturbation|Pakistan\s?Democracy|Pakistan’s Democracy|vibrator|dildo|Syed\s?Muzammil\s?Shah|pornographic|pornstar|pak\s?media|playboy|pakistan\s?crisis|penthouse|brazzers|bangbros|hindi\s?song|love\s?song|urdu\s?music|punjabi\s?song|bollywood|sexy\s?dance|belly\s?dance|hot\s?dance|item\s?song|rain\s?dance|club\s?dance|mujra|stage\s?show|pashto\s?dance|dance\s?performance|romantic\s?song|sad\s?song|showbiz|lofi\s?remix|mashup\s?2026|lip\s?lock|fly(ing)?\s?kiss|french\s?kiss|smooch|necking|s\*?x\s?worker|Pakistani\s?military’s|Pakistan's\s?military|Pakistani\s?army|Pakistan's\s?army|Pakistan\s?army|sex\s?worker|bedroom(\s?s[x\*3\-\_]x)?|s.e.x.|movieclips|movieclip|sexy|steamy|steamiest|romantic|romance|erotic|seduce|sensual|webseries|web\s?series|hindi\s?web\s?series|bhabhi|devar|begum|kiss|love\s?sex|shadi\s?raat|suhagraat|porn|xxx|adult|nude|naked|boobs|b[\*\-a-z0-9]{2}bs|booty|thot|onlyfans|leaked|scandal|mujra|stage\s?show|pashto\s?dance|college\s?girl|wet|mms|item\s?song|tiktok|reels|shorts|roast|imran\s?khan|nawaz\s?sharif|maryam|zardari|bilawal|shehbaz|fazl|pti|pmln|ppp|mqm|army|jalsa|dharna|ducky|sistrology|maaz|gameplay|pubg|freefire|minecraft|gta|roblox|love\s?sex|crime|aaj\s?tv|xxl|Aaj\s?Pakistan\s?News|love\s?island|s\*?x\s?worker|sex\s?worker|lip\s?lock|fly(ing)?\s?kiss|french\s?kiss|smooch|tamil|hindi\s?full\s?movie|couple\s?masti|village\s?couple|couple\s?vlogs|pranks|prank|couple\s?vlog|couple\s?date|couple\s?sex|Sabir\s?Shakir|necking|s[x\*3\-\_]x|bedroom(\s?s[x\*3\-\_]x)?|s[x\*3\-\_]x\s?bedroom).*/i</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 35px; width: 1px; border-bottom: 0px solid transparent; top: 800px;"></div><div class="CodeMirror-gutters" style="left: 0px; height: 835px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+                  <div id="title_resizer" class="cm-resizer"></div>
+                </div>
+              </section>
+
+              <section id="channel-name-tab-content" class="tab-panel" style="display: none;">
+                <div>
+                  <textarea id="channelName" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap cm-darktheme" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 12179px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code" role="presentation"></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent;"></div><div class="CodeMirror-gutters" style="left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+                  <div id="channelName_resizer" class="cm-resizer"></div>
+                </div>
+              </section>
+
+              <section id="videoid-tab-content" class="tab-panel" style="display: none;">
+                <div>
+                  <textarea id="videoId" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap cm-darktheme" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 58px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code" role="presentation"></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent;"></div><div class="CodeMirror-gutters" style="left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+                  <div id="videoId_resizer" class="cm-resizer"></div>
+                </div>
+              </section>
+
+              <section id="channelid-tab-content" class="tab-panel" style="display: none;">
+                <div>
+                  <textarea id="channelId" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap cm-darktheme" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 59px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code" role="presentation"></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent;"></div><div class="CodeMirror-gutters" style="left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+                  <div id="channelId_resizer" class="cm-resizer"></div>
+                </div>
+              </section>
+
+              <section id="comment-tab-content" class="tab-panel" style="display: none;">
+                <div>
+                  <textarea id="comment" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap cm-darktheme" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px;"><div style="position: relative;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code" role="presentation"></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px;"></div><div class="CodeMirror-gutters" style="left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+                  <div id="comment_resizer" class="cm-resizer"></div>
+                </div>
+              </section>
+
+              <section id="advanced-tab-content" class="tab-panel" style="display: none;">
+                <div id="advanced_tab" style="display: none" class="advanced">
+                        <textarea id="javascript" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap cm-darktheme" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 576px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code" role="presentation"></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent;"></div><div class="CodeMirror-gutters" style="left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+                        <div id="javascript_resizer" class="cm-resizer"></div>
+                </div>
+                <div>
+                  <input id="enable_javascript" type="checkbox">
+                  <label style="margin-top:5px" for="enable_javascript">Enable advanced blocking <a style="cursor: pointer" target="_blank" href="https://github.com/amitbl/blocktube/wiki/Advanced-Blocking" class="tooltip-link" title="Don&#39;t enable this unless you know some Javascript and have read the documentation">?</a></label>
+                </div>
+              </section>
+
+            </div>
+        </div></fieldset>
+        <legend>Other options</legend>
+        <fieldset>
+          <div>
+            <label class="block-label" for="ui_theme">UI Theme</label>
+            <select id="ui_theme" class="select">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+          <div>
+            <label class="block-label" for="pass_save">UI Password</label>
+            <input id="pass_save" type="password" autocomplete="off">
+          </div>
+          <div>
+            <label class="block-label" for="block_message">Video blocked message</label>
+            <input id="block_message" type="text" autocomplete="off">
+          </div>
+          <div>
+            <label class="block-label" for="percent_watched_hide">Hide videos watched more than</label>
+            <input id="percent_watched_hide" size="3" type="number" min="0" max="100" autocomplete="off"> % <span class="tooltip" title="* This feature uses Youtube&#39;s watch time tracking and will only work when logged in
+ * Matched videos are only hidden and will work on direct access and playlists">?</span>
+          </div>
+          <div>
+            <label class="block-label" for="vidLength_0">Runtime blocking</label>
+            <select id="vidLength_type" class="select">
+              <option value="block">Block</option>
+              <option value="allow">Allow</option>
+            </select>
+            <span style="font-size:small; font-style:italic">videos between</span>
+            <input id="vidLength_0" type="number" min="0" max="99999" size="5">
+            <small>-</small>
+            <input id="vidLength_1" type="number" min="0" max="99999" size="5">
+            <span style="font-size:small; font-style:italic">seconds long</span>
+          </div>
+          <div class="multi-column-content">
+          <div style="margin-top: 0">
+            <input id="disable_mixes" type="checkbox">
+            <label for="disable_mixes">Block YouTube's auto-generated playlists</label>
+          </div>
+          <div>
+            <input id="disable_trending" type="checkbox">
+            <label for="disable_trending">Block Explore page</label>
+          </div>
+          <div>
+            <input id="disable_shorts" type="checkbox">
+            <label for="disable_shorts">Block Youtube Shorts videos <span class="tooltip" title="This will also block access to the dedicated &quot;Shorts&quot; page">?</span></label>
+          </div>
+          <div>
+            <input id="disable_movies" type="checkbox">
+            <label for="disable_movies">Block Youtube Movies videos</label>
+          </div>
+          <div>
+            <input id="autoplay" type="checkbox">
+            <label for="autoplay">Enable Auto-playing next suggested video when blocking occurs</label>
+          </div>
+          <div>
+              <input id="suggestions_only" type="checkbox">
+              <label for="suggestions_only">Disable direct access blocking <span class="tooltip" title="This option will make videos hidden in suggestions, and won&#39;t block them when directly visiting them via URL, or when embedded on other sites.">?</span></label>
+          </div>
+          <div>
+            <input id="block_feedback" type="checkbox">
+            <label for="block_feedback">Click on "Not interested / Don't recommend channel" when blocking using context menus <span class="tooltip" title="* This option will trigger the normal YouTube operations in addition to BlockTube&#39;s. 
+* This will work only on videos that normally have these options available in menu.
+* Clicking on the &#39;Undo&#39; button will not remove the video from your blocklist.">?</span></label>
+          </div>
+          <div>
+            <input id="disable_you_there" type="checkbox">
+            <label for="disable_you_there">Disable automatic pause of videos <span class="tooltip" title="This will remove &quot;Video paused. Continue watching?&quot; pop-up messages">?</span></label>
+          </div>
+          <div>
+            <input id="disable_db_normalize" type="checkbox">
+            <label for="disable_db_normalize">Disable YouTube's audio loudness normalization <span class="tooltip" title="Enabling this option may cause YouTube to detect the extension as an ad-blocker">?</span></label>
+          </div>
+          <div>
+            <input id="disable_on_history" type="checkbox">
+            <label for="disable_on_history">Disable blocking on watch history page</label>
+          </div>
+          </div>
+        </fieldset>
+        <div class="buttons sticky">
+          <input type="button" class="" id="save_btn" value="✔ Save">
+          <input type="button" id="export" value="🡅 Export">
+          <input type="button" id="import" value="🡇 Import">
+          <input type="file" id="myfile" accept="application/json" style="display:none">
+          <div class="flex-break"></div>
+          <div id="status_save" class="alert"></div>
+        </div>
+      </form>
+    </div>
+
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/codemirror.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/matchbrackets.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/active-line.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/closebrackets.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/search.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/searchcursor.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/match-highlighter.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/dialog.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/fullscreen.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/javascript.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm/simple.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/cm-syntax.js"></script>
+    <script type="text/javascript" src="chrome-extension://bbeaicapbccfllodepmimpkgecanonai/src/ui/options.js"></script>
+  
+
+</body></html>

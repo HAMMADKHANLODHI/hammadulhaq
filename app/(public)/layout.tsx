@@ -9,7 +9,7 @@ import JumpingDots from "./components/JumpingDots"; // ✅ Corrected case
 import { Nunito_Sans } from "next/font/google";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-
+import PublicProvider from './PublicProvider';
 // Load Nunito Sans
 const nunito = Nunito_Sans({
   subsets: ["latin"],
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`h-full ${nunito.variable} font-sans bg-[#EFF0F4]`}>
-        {/* Animated Menu */}
+        <PublicProvider>
         <AnimatePresence>
           {showMenu && (
             <motion.div
@@ -186,6 +186,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </nav>
 
         {children}
+        </PublicProvider>
       </body>
     </html>
   );

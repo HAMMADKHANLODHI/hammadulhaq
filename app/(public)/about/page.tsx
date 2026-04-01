@@ -10,6 +10,7 @@ const About: FC = () => {
   const showskills = () => {
     setshowskill(true);
     setshowExperience(false);
+    setshowEducation(false);
     console.log("The skill is ", showskill)
   }
   const [showExperience, setshowExperience] = useState(false);

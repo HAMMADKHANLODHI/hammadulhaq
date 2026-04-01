@@ -2,8 +2,9 @@
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { FC } from "react";
-
-const Services: FC = () => {
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+const Services: FC = async() => {
+  
   // ✅ Animation variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },

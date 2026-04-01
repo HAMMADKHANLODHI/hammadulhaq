@@ -4,7 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  
   return (
+    
     <main className="w-full min-h-screen flex flex-col items-center justify-center bg-[#EFF0F4] px-4">
       {/* Hero Section */}
       <section className="w-full max-w-6xl flex flex-col-reverse md:flex-row items-center justify-between py-20">
@@ -62,7 +64,7 @@ export default function Home() {
                 alt="Hammad Ul Haq"
                 fill
                 className="object-cover rounded-full"
-                priority
+                
               />
             </div>
           </div>

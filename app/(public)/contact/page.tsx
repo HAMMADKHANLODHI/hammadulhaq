@@ -1,7 +1,8 @@
 "use client";
-
+import PromiseToast from "../components/PromiseToast";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { toast } from "sonner";
 import { FC, useState, ChangeEvent, FormEvent } from "react";
 
 const Contact: FC = () => {
@@ -30,9 +31,6 @@ const Contact: FC = () => {
     // setLoading(true);
     setStatus(null);
 
-
-  
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -43,30 +41,54 @@ const Contact: FC = () => {
       const data = await res.json();
 
       if (!res.ok) {
+        console.log("toast error");
+        toast.error("Not quite there yet.", {
+          description: "We hit a snag. Let's try that again.",
+          duration: 4000,
+        });
         setStatus(data.error || "Something went wrong!");
       } else {
+        toast.success("Boom. Connected. ⚡", {
+          description: "I've got your message. It's safe. Talk soon.",
+
+          duration: 4000,
+        });
+
         setStatus("✅ Message sent successfully!");
         try {
-    const res = await fetch("/api/mail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(contact),
-    });
+          const resp = await fetch("/api/mail", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(contact),
+          });
 
-    const data = await res.json();
-    if (data.success) alert("✅ Message sent successfully!");
-    else alert("❌ Failed to send message: " + data.error);
-  } catch (err) {
-    console.error("Error submitting form:", err);
-    alert("❌ Something went wrong. Please try again later.");
-  }
+          const data = await resp.json();
+          if (data.success) {
+            console.log("The data from mail is ",data)
+            toast.info("One more thing...", {
+              description: `Check your inbox. I sent you a copy. It’s beautiful.`,
+              duration: 5000,
+            });
+          } else {
+            toast.error("Just a minor glitch.", {
+              description:
+                "I got the message, but the receipt email didn't fly.",
+                duration: 4000,
+              });
+          }
+        } catch (err) {
+          console.error("Error submitting form:", err);
+          toast.error("❌ Something went wrong. Please try again later.",{duration: 4000,});
+        }
         setContact({ name: "", email: "", subject: "", message: "" });
-
       }
     } catch (error) {
+      console.log("toast error");
+      toast.error("No signal.", {
+        description: "Check your internet. Then, let's make magic happen.",
+      });
       console.error("Error submitting form:", error);
       setStatus("❌ Server error, please try again.");
-      
     } finally {
       setLoading(false);
     }
@@ -220,20 +242,6 @@ const Contact: FC = () => {
             {loading ? "Sending..." : "Send Message"}
           </motion.button>
         </form>
-
-        {status && (
-          
-          <div className="mt-4 flex justify-center items-center">
-          <Image
-      src="/alert.svg"
-      width={20}
-      height={20}
-      alt="Picture of the author"
-    />
-          <p className="ml-2  text-center text-red-700 font-medium">{status}</p>
-        </div>
-        
-        )}
       </motion.div>
     </motion.div>
   );

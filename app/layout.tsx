@@ -2,8 +2,9 @@
 
 import "./globals.css";
 import Image from "next/image";
-
+import { Toaster as SonnerToaster, type ToasterProps } from "sonner";
 import { useState, ReactNode } from "react";
+import { useTheme } from 'next-themes';
 
 import { Nunito_Sans } from "next/font/google";
 import Link from "next/link";
@@ -23,11 +24,11 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   const [showMenu, setShowMenu] = useState(false);
   const handleShowMenu = () => setShowMenu(!showMenu);
-
+const { resolvedTheme } = useTheme();
   return (
     <html lang="en">
-      <body className={`h-full ${nunito.variable} font-sans bg-[#EFF0F4]`}>
-        
+      <body className={`min-h-screen min-w-screen ${nunito.variable} font-sans bg-white`}>
+        <SonnerToaster position="top-center" theme={resolvedTheme as ToasterProps['theme']} richColors />
         {children}
       </body>
     </html>
