@@ -108,7 +108,7 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: 'YOUR_GOOGLE_SEARCH_CONSOLE_CODE', // Paste your code here after GSC setup
+    google: 'google8cb4b88fbedd445a.html', // Paste your code here after GSC setup
   },
 
   category: 'technology',
