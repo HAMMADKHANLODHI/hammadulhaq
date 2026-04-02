@@ -89,8 +89,8 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [
       {
-        // Points to your professional black background logo
-        url: '/huh-logos.png', 
+        // Updated to point to your new 1200x630 image
+        url: '/huh-logoss.png', 
         width: 1200,
         height: 630,
         alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
@@ -102,12 +102,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
-    // Explicit absolute URL to satisfy strict crawlers
-    images: [`${BASE_URL}/huh-logos.png`], 
+    // Explicit absolute URL to satisfy strict crawlers and force the 1.91:1 ratio
+    images: [`${BASE_URL}/huh-logoss.png`], 
   },
 
   verification: {
-    // UPDATED: This matches the verification string you successfully manually checked
+    // Matches the verification string you successfully checked
     google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg', 
   },
 
@@ -123,7 +123,8 @@ export function PersonJsonLd() {
     '@type': 'Person',
     name: FULL_NAME,
     url: BASE_URL,
-    image: `${BASE_URL}/huh-logos.png`,
+    // Updated image path for schema consistency
+    image: `${BASE_URL}/huh-logoss.png`,
     sameAs: [LINKEDIN, GITHUB],
     jobTitle: 'Full-Stack Developer & AI Engineer',
     description: DESCRIPTION,
