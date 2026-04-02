@@ -108,7 +108,7 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: 'pxNjVx0r_sk8jzwSViwSqhj1LeoWc7Vy5E7rgmALi1w', // Paste your code here after GSC setup
+    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg', // Paste your code here after GSC setup
   },
 
   category: 'technology',
