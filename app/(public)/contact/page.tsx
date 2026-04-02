@@ -28,7 +28,7 @@ const Contact: FC = () => {
   // ✅ Submit handler
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     setStatus(null);
 
     try {
