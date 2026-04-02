@@ -6,28 +6,26 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // General rules for all bots
+        // 1. General rules for most search engines
         userAgent: '*',
         allow: '/',
         disallow: [
           '/admin',
-          '/admin/',
           '/api/',
           '/login',
-          '/_next/',
+          '/private/',
+          '/*?v=', // Prevents indexing of the ?v=1 demo version to avoid duplicate content issues
         ],
       },
       {
-        // Dedicated rule for social media preview crawlers
-        userAgent: 'facebookexternalhit',
-        allow: '/',
+        // 2. Specific rule for AI Training Crawlers (Optional)
+        // Add this if you don't want your code/content used for AI training
+        userAgent: ['GPTBot', 'ChatGPT-User', 'CCBot'],
+        disallow: '/',
       },
       {
-        userAgent: 'WhatsApp',
-        allow: '/',
-      },
-      {
-        userAgent: 'Twitterbot',
+        // 3. Social Media crawlers should have full access to ensure OpenGraph works
+        userAgent: ['facebookexternalhit', 'WhatsApp', 'Twitterbot', 'LinkedInBot'],
         allow: '/',
       },
     ],
