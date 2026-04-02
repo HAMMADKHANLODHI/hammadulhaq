@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONSTANTS — Single Source of Truth
@@ -8,21 +8,12 @@ const FULL_NAME = 'Hammad Ul Haq';
 const LINKEDIN = 'https://linkedin.com/in/hammad-ul-haq-07b62a357';
 const GITHUB = 'https://github.com/HAMMADKHANLODHI';
 
-/**
- * Primary title — Optimized under 60 chars for all platforms.
- */
 const TITLE_DEFAULT = 'Hammad Ul Haq | Full-Stack & AI Engineer — MERN & Next.js';
 
-/**
- * Meta description — Clear and geographically targeted.
- */
 const DESCRIPTION =
   'Full-Stack Developer & AI Engineer specializing in MERN Stack, Next.js, and Agentic AI. ' +
   'Developer of Smart Video Insight and real-time ERP systems in Lahore, Pakistan.';
 
-/**
- * Keywords — Optimized for local and remote recruitment.
- */
 const KEYWORDS = [
   'Hammad Ul Haq',
   'MERN Stack Developer Lahore',
@@ -36,83 +27,93 @@ const KEYWORDS = [
 ].join(', ');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// METADATA EXPORT
+// DYNAMIC METADATA — Properly handles ?v=1
 // ─────────────────────────────────────────────────────────────────────────────
-export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+export async function generateMetadata(
+  { searchParams }: { searchParams: { v?: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const version = searchParams.v;
 
-  title: {
-    default: TITLE_DEFAULT,
-    template: `%s | ${FULL_NAME}`,
-  },
+  const title = version === '1'
+    ? 'Hammad Ul Haq | Smart Video Insight Demo'
+    : TITLE_DEFAULT;
 
-  description: DESCRIPTION,
-  keywords: KEYWORDS,
+  const description = version === '1'
+    ? 'Experience Smart Video Insight — my AI-powered video analysis tool built with Next.js and Agentic AI.'
+    : DESCRIPTION;
 
-  authors: [{ name: FULL_NAME, url: LINKEDIN }],
-  creator: FULL_NAME,
-  publisher: FULL_NAME,
+  return {
+    metadataBase: new URL(BASE_URL),
 
-  alternates: {
-    canonical: '/',
-    languages: {
-      'en-US': '/',
-      'ur-PK': '/', 
+    title: {
+      default: TITLE_DEFAULT,
+      template: `%s | ${FULL_NAME}`,
     },
-  },
 
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    description,
+    keywords: KEYWORDS,
+
+    authors: [{ name: FULL_NAME, url: LINKEDIN }],
+    creator: FULL_NAME,
+    publisher: FULL_NAME,
+
+    alternates: {
+      canonical: version === '1' ? '/?v=1' : '/',
+    },
+
+    robots: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-
-  icons: {
-    icon: [
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icon.png', type: 'image/png' },
-    ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
-  },
-
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: BASE_URL,
-    siteName: `${FULL_NAME} — Portfolio`,
-    title: TITLE_DEFAULT,
-    description: DESCRIPTION,
-    images: [
-      {
-        // Updated to point to your new 1200x630 image
-        url: '/huh-logoss.png', 
-        width: 1200,
-        height: 630,
-        alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
-    ],
-  },
+    },
 
-  twitter: {
-    card: 'summary_large_image',
-    title: TITLE_DEFAULT,
-    description: DESCRIPTION,
-    // Explicit absolute URL to satisfy strict crawlers and force the 1.91:1 ratio
-    images: [`${BASE_URL}/huh-logoss.png`], 
-  },
+    icons: {
+      icon: [
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/icon.png', type: 'image/png' },
+      ],
+      apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    },
 
-  verification: {
-    // Matches the verification string you successfully checked
-    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg', 
-  },
+    // Open Graph (Facebook, LinkedIn, WhatsApp)
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: version === '1' ? `${BASE_URL}/?v=1` : BASE_URL,
+      siteName: `${FULL_NAME} — Portfolio`,
+      title,
+      description,
+      images: [
+        {
+          url: `${BASE_URL}/huh-logos.png`,   // ← Only this image now
+          width: 1200,
+          height: 630,
+          alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
+        },
+      ],
+    },
 
-  category: 'technology',
-};
+    // Twitter Card
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${BASE_URL}/huh-logos.png`],
+    },
+
+    verification: {
+      google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
+    },
+
+    category: 'technology',
+  };
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STRUCTURED DATA (JSON-LD)
@@ -123,8 +124,7 @@ export function PersonJsonLd() {
     '@type': 'Person',
     name: FULL_NAME,
     url: BASE_URL,
-    // Updated image path for schema consistency
-    image: `${BASE_URL}/huh-logoss.png`,
+    image: `${BASE_URL}/huh-logos.png`,
     sameAs: [LINKEDIN, GITHUB],
     jobTitle: 'Full-Stack Developer & AI Engineer',
     description: DESCRIPTION,
