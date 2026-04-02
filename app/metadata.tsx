@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CONSTANTS — Single Source of Truth [cite: 1, 5, 7, 8]
+// CONSTANTS — Single Source of Truth
 // ─────────────────────────────────────────────────────────────────────────────
 const BASE_URL = 'https://hammadulhaq-seven.vercel.app';
 const FULL_NAME = 'Hammad Ul Haq';
@@ -9,20 +9,19 @@ const LINKEDIN = 'https://linkedin.com/in/hammad-ul-haq-07b62a357';
 const GITHUB = 'https://github.com/HAMMADKHANLODHI';
 
 /**
- * Primary title — optimized for high-intent search clusters. [cite: 2, 10, 43]
+ * Primary title — Optimized under 60 chars for all platforms.
  */
-const TITLE_DEFAULT =
-  'Hammad Ul Haq | Full-Stack & AI Engineer — MERN · Next.js';
+const TITLE_DEFAULT = 'Hammad Ul Haq | Full-Stack & AI Engineer — MERN & Next.js';
 
 /**
- * Meta description — Includes your specific project experience and location. [cite: 8, 11, 22, 26]
+ * Meta description — Clear and geographically targeted.
  */
 const DESCRIPTION =
   'Full-Stack Developer & AI Engineer specializing in MERN Stack, Next.js, and Agentic AI. ' +
   'Developer of Smart Video Insight and real-time ERP systems in Lahore, Pakistan.';
 
 /**
- * Keywords — Extracted from your specific certifications and tech stack. [cite: 2, 38, 39, 46, 47]
+ * Keywords — Optimized for local and remote recruitment.
  */
 const KEYWORDS = [
   'Hammad Ul Haq',
@@ -32,8 +31,6 @@ const KEYWORDS = [
   'Agentic AI',
   'crewAI Developer',
   'FastAPI Python',
-  'Smart Video Insight',
-  'Mingo Chat App',
   'Full-Stack JavaScript Developer',
   'Remote Developer Pakistan'
 ].join(', ');
@@ -60,7 +57,7 @@ export const metadata: Metadata = {
     canonical: '/',
     languages: {
       'en-US': '/',
-      'ur-PK': '/', // Signals regional relevance to Pakistan [cite: 8, 52]
+      'ur-PK': '/', 
     },
   },
 
@@ -77,8 +74,8 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: '/icon.png', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png', type: 'image/png' },
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
@@ -92,7 +89,8 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [
       {
-        url: '/huh-logos.png',
+        // Points to your professional black background logo
+        url: '/huh-logos.png', 
         width: 1200,
         height: 630,
         alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
@@ -104,18 +102,20 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
-    images: ['/huh-logos.png'],
+    // Explicit absolute URL to satisfy strict crawlers
+    images: [`${BASE_URL}/huh-logos.png`], 
   },
 
   verification: {
-    google: 'pxNjVx0r_sk8jzwSViwSqhj1LeoWc7Vy5E7rgmALi1w', // Paste your code here after GSC setup
+    // UPDATED: This matches the verification string you successfully manually checked
+    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg', 
   },
 
   category: 'technology',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STRUCTURED DATA (JSON-LD) [cite: 1, 2, 7, 8, 52, 53]
+// STRUCTURED DATA (JSON-LD)
 // ─────────────────────────────────────────────────────────────────────────────
 export function PersonJsonLd() {
   const schema = {
