@@ -12,7 +12,7 @@ const GITHUB = 'https://github.com/HAMMADKHANLODHI';
  * Primary title — optimized for high-intent search clusters. [cite: 2, 10, 43]
  */
 const TITLE_DEFAULT =
-  'Hammad Ul Haq | Full-Stack & AI Engineer — MERN · Next.js · FastAPI';
+  'Hammad Ul Haq | Full-Stack & AI Engineer — MERN · Next.js';
 
 /**
  * Meta description — Includes your specific project experience and location. [cite: 8, 11, 22, 26]
