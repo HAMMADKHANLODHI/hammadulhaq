@@ -41,7 +41,7 @@ const Contact: FC = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        console.log("toast error");
+        
         toast.error("Not quite there yet.", {
           description: "We hit a snag. Let's try that again.",
           duration: 4000,
@@ -83,7 +83,7 @@ const Contact: FC = () => {
         setContact({ name: "", email: "", subject: "", message: "" });
       }
     } catch (error) {
-      console.log("toast error");
+
       toast.error("No signal.", {
         description: "Check your internet. Then, let's make magic happen.",
       });
