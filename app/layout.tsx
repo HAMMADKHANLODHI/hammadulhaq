@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
 import { Nunito_Sans } from "next/font/google";
-import { metadata as siteMetadata, PersonJsonLd } from './metadata'; // Path to your metadata file
+import { PersonJsonLd, generateMetadata as getSiteMetadata } from './metadata'; 
 import ClientWrapper from './ClientWrapper';
 import "./globals.css";
+import type { Metadata, ResolvingMetadata } from 'next';
 
 const nunito = Nunito_Sans({
   subsets: ["latin"],
@@ -10,8 +10,13 @@ const nunito = Nunito_Sans({
   variable: "--font-nunito",
 });
 
-// THIS IS THE SEO GOLD STANDARD
-export const metadata: Metadata = siteMetadata;
+// Re-export the dynamic metadata function
+export async function generateMetadata(
+  props: { params: any; searchParams: { v?: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return getSiteMetadata(props, parent);
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
