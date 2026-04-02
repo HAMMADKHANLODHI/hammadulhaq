@@ -25,7 +25,11 @@ const KEYWORDS = [
   'Remote Developer Pakistan'
 ];
 
-const OG_IMAGE = `${BASE_URL}/huh-logoss.png`;
+/** * CRITICAL: Absolute URL is required for Social Media Crawlers.
+ * Ensure huh-logoss.png is in your /public folder.
+ * Adding a version query (?v=1) helps bypass old social media caches.
+ */
+const OG_IMAGE = `${BASE_URL}/huh-logoss.png?v=1.2`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATIC FALLBACK
@@ -39,7 +43,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: KEYWORDS,
   alternates: {
-    canonical: './',
+    canonical: '/',
   },
   robots: {
     index: true,
@@ -80,7 +84,7 @@ export const metadata: Metadata = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC METADATA — Fixes Prerender TypeError
+// DYNAMIC METADATA — Prevents build-time "TypeError: undefined"
 // ─────────────────────────────────────────────────────────────────────────────
 type Props = {
   params: Promise<Record<string, string>>;
@@ -91,10 +95,8 @@ export async function generateMetadata(
   { searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Await searchParams and provide a fallback object to prevent "undefined" errors
+  // Await searchParams and fallback to prevent crash during static generation
   const resolvedSearchParams = (await searchParams) ?? {};
-  
-  // Safely extract 'v' (version)
   const version = typeof resolvedSearchParams.v === 'string' ? resolvedSearchParams.v : undefined;
 
   const isDemo = version === '1';
@@ -119,11 +121,13 @@ export async function generateMetadata(
       url: isDemo ? `${BASE_URL}/?v=1` : BASE_URL,
       title,
       description,
+      images: [{ url: OG_IMAGE, width: 1200, height: 630 }],
     },
     twitter: {
       ...metadata.twitter,
       title,
       description,
+      images: [OG_IMAGE],
     },
   };
 }
@@ -142,13 +146,8 @@ export function PersonJsonLd() {
     jobTitle: 'Full-Stack Developer & AI Engineer',
     description: DESCRIPTION,
     knowsAbout: [
-      'MERN Stack',
-      'Next.js',
-      'FastAPI',
-      'Agentic AI',
-      'LLM Integration',
-      'MongoDB',
-      'Socket.io',
+      'MERN Stack', 'Next.js', 'FastAPI', 'Agentic AI', 
+      'LLM Integration', 'MongoDB', 'Socket.io'
     ],
     address: {
       '@type': 'PostalAddress',
