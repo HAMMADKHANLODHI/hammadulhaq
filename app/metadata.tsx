@@ -75,16 +75,15 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
-    creator: '@your_twitter_handle', // Optional: Add your handle
     images: [OG_IMAGE],
   },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC METADATA
+// DYNAMIC METADATA — Fixes Prerender TypeError
 // ─────────────────────────────────────────────────────────────────────────────
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<Record<string, string>>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
@@ -92,8 +91,11 @@ export async function generateMetadata(
   { searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const sParams = await searchParams;
-  const version = sParams.v;
+  // Await searchParams and provide a fallback object to prevent "undefined" errors
+  const resolvedSearchParams = (await searchParams) ?? {};
+  
+  // Safely extract 'v' (version)
+  const version = typeof resolvedSearchParams.v === 'string' ? resolvedSearchParams.v : undefined;
 
   const isDemo = version === '1';
 
