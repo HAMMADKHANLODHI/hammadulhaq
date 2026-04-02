@@ -27,9 +27,9 @@ const KEYWORDS = [
 
 /** * CRITICAL: Absolute URL is required for Social Media Crawlers.
  * Ensure huh-logoss.png is in your /public folder.
- * Adding a version query (?v=1) helps bypass old social media caches.
+ * Added version query to bypass stale social media caches.
  */
-const OG_IMAGE = `${BASE_URL}/huh-logoss.png?v=1.2`;
+const OG_IMAGE = `${BASE_URL}/huh-logoss.png?v=1.3`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATIC FALLBACK
@@ -58,6 +58,10 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
+    // PINTEREST DOMAIN VERIFICATION
+    other: {
+      'p:domain_verify': ['0cf888d55a0f949177131b224bb96f2f'],
+    },
   },
   openGraph: {
     type: 'website',
