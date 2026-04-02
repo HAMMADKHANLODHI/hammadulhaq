@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // General rules for all bots (Google, Bing, etc.)
+        // General rules for all bots
         userAgent: '*',
         allow: '/',
         disallow: [
@@ -14,13 +14,21 @@ export default function robots(): MetadataRoute.Robots {
           '/admin/',
           '/api/',
           '/login',
-          '/_next/', // Usually handled by Next.js, but safe to keep
+          '/_next/',
         ],
       },
       {
-        // Explicitly ensure Social Media bots are NEVER blocked from your assets
-        userAgent: ['facebookexternalhit', 'WhatsApp', 'Twitterbot'],
-        allow: ['/', '/huh-logos.png'], 
+        // Dedicated rule for social media preview crawlers
+        userAgent: 'facebookexternalhit',
+        allow: '/',
+      },
+      {
+        userAgent: 'WhatsApp',
+        allow: '/',
+      },
+      {
+        userAgent: 'Twitterbot',
+        allow: '/',
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
