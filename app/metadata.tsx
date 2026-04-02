@@ -26,6 +26,8 @@ const KEYWORDS = [
   'Remote Developer Pakistan'
 ].join(', ');
 
+const OG_IMAGE = `${BASE_URL}/huh-logos.png`;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // STATIC FALLBACK — Prevents build-time "export not found" errors
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,22 +43,30 @@ export const metadata: Metadata = {
     google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
   },
   openGraph: {
-    images: [{ url: `${BASE_URL}/huh-logos.png`, width: 1200, height: 630 }],
+    type: 'website',
+    locale: 'en_US',
+    url: BASE_URL,
+    siteName: `${FULL_NAME} — Portfolio`,
+    title: TITLE_DEFAULT,
+    description: DESCRIPTION,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: FULL_NAME }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`${BASE_URL}/huh-logos.png`],
+    title: TITLE_DEFAULT,
+    description: DESCRIPTION,
+    images: [OG_IMAGE], // Explicitly defined to satisfy X/Twitter crawler
   },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC METADATA — Safely handles ?v=1
+// DYNAMIC METADATA — Safely handles ?v=1 and build-time prerendering
 // ─────────────────────────────────────────────────────────────────────────────
 export async function generateMetadata(
-  { searchParams }: { searchParams?: { v?: string } }, // Made optional for build-time safety
+  { searchParams }: { searchParams?: { v?: string } }, 
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Use Optional Chaining (?.) to prevent crash during prerendering
+  // Use Optional Chaining to prevent crash during prerendering
   const version = searchParams?.v;
 
   const title = version === '1'
@@ -68,7 +78,7 @@ export async function generateMetadata(
     : DESCRIPTION;
 
   return {
-    ...metadata, // Spread static defaults
+    ...metadata, // Inherit base configs
     title: {
       default: title,
       template: `%s | ${FULL_NAME}`,
@@ -87,6 +97,7 @@ export async function generateMetadata(
       ...metadata.twitter,
       title,
       description,
+      images: [OG_IMAGE], // Explicitly re-declared for dynamic routes
     },
   };
 }
@@ -100,7 +111,7 @@ export function PersonJsonLd() {
     '@type': 'Person',
     name: FULL_NAME,
     url: BASE_URL,
-    image: `${BASE_URL}/huh-logos.png`,
+    image: OG_IMAGE,
     sameAs: [LINKEDIN, GITHUB],
     jobTitle: 'Full-Stack Developer & AI Engineer',
     description: DESCRIPTION,
