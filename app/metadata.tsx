@@ -26,7 +26,7 @@ const KEYWORDS = [
   'Remote Developer Pakistan'
 ].join(', ');
 
-const OG_IMAGE = `${BASE_URL}/huh-logos.png`;
+const OG_IMAGE = `${BASE_URL}/huh-logoss.png`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATIC FALLBACK — Prevents build-time "export not found" errors
