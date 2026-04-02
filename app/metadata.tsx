@@ -27,13 +27,37 @@ const KEYWORDS = [
 ].join(', ');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC METADATA — Properly handles ?v=1
+// STATIC FALLBACK — Prevents build-time "export not found" errors
+// ─────────────────────────────────────────────────────────────────────────────
+export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: TITLE_DEFAULT,
+    template: `%s | ${FULL_NAME}`,
+  },
+  description: DESCRIPTION,
+  keywords: KEYWORDS,
+  verification: {
+    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
+  },
+  openGraph: {
+    images: [{ url: `${BASE_URL}/huh-logos.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [`${BASE_URL}/huh-logos.png`],
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DYNAMIC METADATA — Safely handles ?v=1
 // ─────────────────────────────────────────────────────────────────────────────
 export async function generateMetadata(
-  { searchParams }: { searchParams: { v?: string } },
+  { searchParams }: { searchParams?: { v?: string } }, // Made optional for build-time safety
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const version = searchParams.v;
+  // Use Optional Chaining (?.) to prevent crash during prerendering
+  const version = searchParams?.v;
 
   const title = version === '1'
     ? 'Hammad Ul Haq | Smart Video Insight Demo'
@@ -44,74 +68,26 @@ export async function generateMetadata(
     : DESCRIPTION;
 
   return {
-    metadataBase: new URL(BASE_URL),
-
+    ...metadata, // Spread static defaults
     title: {
-      default: TITLE_DEFAULT,
+      default: title,
       template: `%s | ${FULL_NAME}`,
     },
-
     description,
-    keywords: KEYWORDS,
-
-    authors: [{ name: FULL_NAME, url: LINKEDIN }],
-    creator: FULL_NAME,
-    publisher: FULL_NAME,
-
     alternates: {
       canonical: version === '1' ? '/?v=1' : '/',
     },
-
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-
-    icons: {
-      icon: [
-        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-        { url: '/icon.png', type: 'image/png' },
-      ],
-      apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
-    },
-
-    // Open Graph (Facebook, LinkedIn, WhatsApp)
     openGraph: {
-      type: 'website',
-      locale: 'en_US',
+      ...metadata.openGraph,
       url: version === '1' ? `${BASE_URL}/?v=1` : BASE_URL,
-      siteName: `${FULL_NAME} — Portfolio`,
       title,
       description,
-      images: [
-        {
-          url: `${BASE_URL}/huh-logos.png`,   // ← Only this image now
-          width: 1200,
-          height: 630,
-          alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
-        },
-      ],
     },
-
-    // Twitter Card
     twitter: {
-      card: 'summary_large_image',
+      ...metadata.twitter,
       title,
       description,
-      images: [`${BASE_URL}/huh-logos.png`],
     },
-
-    verification: {
-      google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
-    },
-
-    category: 'technology',
   };
 }
 
@@ -129,13 +105,8 @@ export function PersonJsonLd() {
     jobTitle: 'Full-Stack Developer & AI Engineer',
     description: DESCRIPTION,
     knowsAbout: [
-      'MERN Stack',
-      'Next.js',
-      'FastAPI',
-      'Agentic AI',
-      'LLM Integration',
-      'MongoDB',
-      'Socket.io'
+      'MERN Stack', 'Next.js', 'FastAPI', 'Agentic AI', 
+      'LLM Integration', 'MongoDB', 'Socket.io'
     ],
     address: {
       '@type': 'PostalAddress',
