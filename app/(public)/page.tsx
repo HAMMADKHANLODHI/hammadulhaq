@@ -63,6 +63,9 @@ export default function Home() {
                 src="/hammad.jpeg"
                 alt="Hammad Ul Haq"
                 fill
+                priority
+                fetchPriority="high"
+                loading="eager"
                 className="object-cover rounded-full"
                 
               />
