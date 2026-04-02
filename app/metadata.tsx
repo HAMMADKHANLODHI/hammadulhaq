@@ -27,7 +27,7 @@ const KEYWORDS = [
 ].join(', ');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC METADATA — Properly handles ?v=1
+// DYNAMIC METADATA
 // ─────────────────────────────────────────────────────────────────────────────
 export async function generateMetadata(
   { searchParams }: { searchParams: { v?: string } },
@@ -42,6 +42,8 @@ export async function generateMetadata(
   const description = version === '1'
     ? 'Experience Smart Video Insight — my AI-powered video analysis tool built with Next.js and Agentic AI.'
     : DESCRIPTION;
+
+  const imageUrl = `${BASE_URL}/huh-logos.png`;
 
   return {
     metadataBase: new URL(BASE_URL),
@@ -91,7 +93,7 @@ export async function generateMetadata(
       description,
       images: [
         {
-          url: `${BASE_URL}/huh-logos.png`,   // ← Only this image now
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
@@ -99,12 +101,19 @@ export async function generateMetadata(
       ],
     },
 
-    // Twitter Card
+    // Twitter Card — Explicit + detailed to remove the warning
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [`${BASE_URL}/huh-logos.png`],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,      // Explicit dimensions help Twitter/Facebook
+          height: 630,
+          alt: `${FULL_NAME} — Full-Stack & AI Engineer Portfolio`,
+        },
+      ],
     },
 
     verification: {
@@ -116,7 +125,7 @@ export async function generateMetadata(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STRUCTURED DATA (JSON-LD)
+// STRUCTURED DATA (JSON-LD) — unchanged
 // ─────────────────────────────────────────────────────────────────────────────
 export function PersonJsonLd() {
   const schema = {
