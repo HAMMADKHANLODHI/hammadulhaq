@@ -1,36 +1,28 @@
-"use client";
-
-import "./globals.css";
-import Image from "next/image";
-import { Toaster as SonnerToaster, type ToasterProps } from "sonner";
-import { useState, ReactNode } from "react";
-import { useTheme } from 'next-themes';
-
+import type { Metadata } from 'next';
 import { Nunito_Sans } from "next/font/google";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-// Load Nunito Sans
+import { metadata as siteMetadata, PersonJsonLd } from './metadata'; // Path to your metadata file
+import ClientWrapper from './ClientWrapper';
+import "./globals.css";
+
 const nunito = Nunito_Sans({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--font-nunito",
 });
 
-interface RootLayoutProps {
-  children: ReactNode;
-}
+// THIS IS THE SEO GOLD STANDARD
+export const metadata: Metadata = siteMetadata;
 
-export default function RootLayout({ children }: RootLayoutProps) {
-  const [showMenu, setShowMenu] = useState(false);
-  const handleShowMenu = () => setShowMenu(!showMenu);
-const { resolvedTheme } = useTheme();
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <PersonJsonLd />
+      </head>
       <body className={`min-h-screen min-w-screen ${nunito.variable} font-sans bg-white`}>
-        <SonnerToaster position="top-center" theme={resolvedTheme as ToasterProps['theme']} richColors />
-        {children}
-        <SpeedInsights />
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   );

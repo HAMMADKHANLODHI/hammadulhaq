@@ -1,27 +1,44 @@
 import { NextResponse } from "next/server";
-import { SecurityEngine } from "@/lib/auth-util";
+
 import { AuthSchema } from "@/lib/schemas/auth"; // Your Zod Schema
-import { connect } from "node:http2";
+
 import User from "@/models/signup";
 import { connectToDatabase } from "@/lib/mongodb";
+import argon2 from "argon2";
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
+        console.log("Received Signup Data:", body); // Debug: Log incoming data
         const validation = AuthSchema.safeParse(body);
         if (!validation.success) {
             console.error("Validation Errors:", validation.error.format());
             return NextResponse.json({ error: "Invalid input", details: validation.error.format() }, { status: 400 });
         } else {
             // return NextResponse.json({ message: "Validation successful", details: validation }, { status: 200 });
+            const { username, password } = validation.data;
             try {
+                
                 await connectToDatabase();
-                // This interprets :string as "rename username to string"
-                const { username, password } = validation.data as { username: string; password: string };
-                if (!username || !password) {
-                    return NextResponse.json({ error: "Username and password are required." }, { status: 400 });
+                const existingUser = await User.findOne({ username: validation.data.username });
+                if (existingUser) {
+                    return NextResponse.json({ error: "Username already exists." }, { status: 400 });
                 }
-                await User.create({ username, password });
+                const hashedPassword = await argon2.hash(validation.data.password,{
+                    type:argon2.argon2id,
+                    memoryCost: 2 ** 16, // 64 MB
+                    timeCost: 5,
+                    parallelism: 1
+                });
+
+
+                
+                await User.create({ 
+                    username: validation.data.username, 
+                    role: "admin",
+                    password: hashedPassword,
+                     
+                });
                 return NextResponse.json({ success: true, message: "User registered successfully." }, { status: 201 });
             } catch (error) {   
 

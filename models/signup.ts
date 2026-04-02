@@ -22,6 +22,12 @@ const UserSchema = new Schema<IUser>(
       minlength: [8, "Password must be at least 8 characters long"],
       maxlength: [100, "Password cannot exceed 100 characters"],
       trim: true,
+      
+    },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
     },
   },
   {

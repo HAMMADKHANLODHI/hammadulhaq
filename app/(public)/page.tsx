@@ -21,8 +21,8 @@ export default function Home() {
             Hi, I’m <span className="text-amber-600">Hammad Ul Haq</span>
           </h1>
           <p className="text-lg md:text-xl text-[#555] leading-relaxed">
-            A passionate <span className="font-semibold">Full-Stack JavaScript Developer</span> 
-            specializing in building modern, scalable, and interactive web applications
+            A passionate <span className="font-semibold">Full-Stack JavaScript Developer </span> 
+             specializing in building modern, scalable, and interactive web applications
             using <span className="font-semibold">MERN & Next.js</span>.
           </p>
 

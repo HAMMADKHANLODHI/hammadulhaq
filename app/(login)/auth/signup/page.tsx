@@ -5,13 +5,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
+import { toast, Toaster } from "sonner";
 
 export const LoginSchema = z.object({
   username: z.string()
-    .min(3, "Identify yourself (min 3 chars)")
-    // Updated Regex: Allows letters, numbers, dots, underscores, slashes, and backslashes
-    // We use \\ to represent a single backslash in a string
-    .regex(/^[a-zA-Z0-9._/\\ ]+$/, "Use authorized characters only (._/\\)"),
+    .min(3, "Identify yourself (min 3 chars)"),
   
   password: z.string()
     .min(8, "Security protocol requires 8+ characters")
@@ -44,32 +42,33 @@ const signup = () => {
     resolver: zodResolver(LoginSchema)
   });
 const[data,setData]=useState<LoginFormValues>();
-  const onSubmit: SubmitHandler<LoginFormValues> =async (data) => {
-    console.log("Authenticated Data:", data);
-    try {
+  const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+    // 1. We create a function that returns a promise
+    const signupAction = async () => {
       const response = await fetch("/api/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-        
       });
-      if(!response.ok){
-        const errorData = await response.json();
-        console.error("Signup Failed:", errorData);
-      }else{
-        const successData = await response.json();
-        setData(successData);
-        console.log("Signup Successful:", successData);
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        // CRITICAL: We throw an error so toast.promise knows it failed
+        throw new Error(result.error || "Provisioning failed");
       }
 
-  }
-  catch (error) {
-    console.error("Signup Error:", error);
-  }
-  };
+      setData(result);
+      return result;
+    };
 
+    // 2. Trigger the Sonner promise
+    toast.promise(signupAction(), {
+      loading: "Initializing Legacy Systems...",
+      success: "Infrastructure established successfully",
+      error: (err) => `${err.message}`,
+    });
+  };
 
   return (
     <div className="w-full flex justify-center items-center min-h-screen bg-amber-600 font-sans">

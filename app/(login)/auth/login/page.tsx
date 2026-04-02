@@ -5,13 +5,15 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
-
+import { i } from "framer-motion/client";
+import { useRouter } from "next/navigation";
 export const LoginSchema = z.object({
+  
   username: z.string()
     .min(3, "Identify yourself (min 3 chars)")
     // Updated Regex: Allows letters, numbers, dots, underscores, slashes, and backslashes
     // We use \\ to represent a single backslash in a string
-    .regex(/^[a-zA-Z0-9._/\\ ]+$/, "Use authorized characters only (._/\\)"),
+    ,
   
   password: z.string()
     .min(8, "Security protocol requires 8+ characters")
@@ -25,6 +27,7 @@ export const LoginSchema = z.object({
 type LoginFormValues = z.infer<typeof LoginSchema>;
 
 const Login = () => {
+  const router = useRouter();
   const [iseyeOpen, setIsEyeOpen] = useState(false);
 
   // --- 2. CONNECT ZOD TO REACT HOOK FORM ---
@@ -36,8 +39,28 @@ const Login = () => {
     resolver: zodResolver(LoginSchema)
   });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     console.log("Authenticated Data:", data);
+    const response =  await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result =  await response.json(); 
+    if (!response.ok) {
+      console.error("Login Failed:", result);
+      // Optionally, set an error state here to display in the UI
+    } else {
+      console.log("Login Successful:", result," and result is ",result.success);
+      if (result.success) {
+        router.push("/admin"); // Redirect to dashboard on successful login
+      } else {
+        console.error("Login Failed:", result);
+      }
+      // Handle successful login (e.g., redirect, store token, etc.)
+    }
+    
   };
 
   return (
