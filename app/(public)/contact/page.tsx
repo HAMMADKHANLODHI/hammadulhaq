@@ -64,7 +64,7 @@ const Contact: FC = () => {
 
           const data = await resp.json();
           if (data.success) {
-            console.log("The data from mail is ",data)
+            
             toast.info("One more thing...", {
               description: `Check your inbox. I sent you a copy. It’s beautiful.`,
               duration: 5000,
