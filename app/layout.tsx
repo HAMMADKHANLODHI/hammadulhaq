@@ -17,12 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* REMOVED: Manual canonical link. 
-          Next.js 16 handles this via the exported 'metadata' object.
-        */}
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* 1. HARDCODED BING VERIFICATION — Bypasses Next.js streaming issues for Bingbot */}
+        <meta name="msvalidate.01" content="B36F72D4B1FFE4A23464398AF62BF5F0" />
         
-        {/* Keep this in the <head> so crawlers find it immediately */}
+        {/* 2. Existing files and Structured Data */}
+        <link rel="manifest" href="/site.webmanifest" />
         <PersonJsonLd />
       </head>
       <body className={`min-h-screen min-w-screen ${nunito.variable} font-sans bg-white antialiased`}>
