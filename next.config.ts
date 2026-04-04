@@ -1,9 +1,12 @@
-import type { NextConfig } from "next";
-
+import type { NextConfig } from 'next'
+ 
 const nextConfig: NextConfig = {
-  // 1. Optimize Images (Crucial for your 'hammad.jpeg' and logos)
+  // 1. React Strict Mode is still supported and recommended for MERN
+  reactStrictMode: true,
+
+  // 2. Image Optimization (Updated for Next.js 16.2)
   images: {
-    formats: ['image/avif', 'image/webp'], // Modern, smaller image formats
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -12,13 +15,11 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // 2. Production Optimizations
-  reactStrictMode: true, // Helps catch bugs in your MERN components
-  swcMinify: true,       // Faster builds on Vercel
-
-  // 3. Prevent Metadata Conflicts
-  // If you ever move sitemap to a custom route, you'd handle rewrites here.
-  // For now, Next.js 16 handles /sitemap.xml automatically via app/sitemap.ts
-};
-
-export default nextConfig;
+  // 3. New Next.js 16 Features (Optional but useful)
+  // Enable the React Compiler for automatic performance boosts
+  experimental: {
+    reactCompiler: true,
+  }
+}
+ 
+export default nextConfig
