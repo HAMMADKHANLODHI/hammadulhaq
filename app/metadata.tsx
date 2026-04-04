@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   verification: {
     google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
     other: {
-      "msvalidate.01": ["B36F72D4B1FFE4A23464398AF62BF5F0"],
-      'p:domain_verify': ['0cf888d55a0f949177131b224bb96f2f'],
+      "msvalidate.01": "B36F72D4B1FFE4A23464398AF62BF5F0",
+      'p:domain_verify': '0cf888d55a0f949177131b224bb96f2f',
     },
   },
   openGraph: {
