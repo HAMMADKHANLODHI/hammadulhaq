@@ -1,39 +1,11 @@
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// CONSTANTS — Single Source of Truth
-// ─────────────────────────────────────────────────────────────────────────────
 const BASE_URL = 'https://hammadulhaq-seven.vercel.app';
 const FULL_NAME = 'Hammad Ul Haq';
-const LINKEDIN = 'https://linkedin.com/in/hammad-ul-haq-07b62a357';
-const GITHUB = 'https://github.com/HAMMADKHANLODHI';
+const TITLE_DEFAULT = 'Hammad Ul Haq | Full-Stack & AI Engineer';
+const DESCRIPTION = 'Full-Stack Developer & AI Engineer specializing in MERN Stack, Next.js, and Agentic AI. Developer of real-time ERP systems and AI solutions in Lahore, Pakistan.';
+const OG_IMAGE = `${BASE_URL}/huh-logoss.png`;
 
-const TITLE_DEFAULT = 'Hammad Ul Haq | Full-Stack & AI Engineer — MERN & Next.js';
-const DESCRIPTION =
-  'Full-Stack Developer & AI Engineer specializing in MERN Stack, Next.js, and Agentic AI. ' +
-  'Developer of Smart Video Insight and real-time ERP systems in Lahore, Pakistan.';
-
-const KEYWORDS = [
-  'Hammad Ul Haq',
-  'MERN Stack Developer Lahore',
-  'Next.js Developer Pakistan',
-  'AI Engineer',
-  'Agentic AI',
-  'crewAI Developer',
-  'FastAPI Python',
-  'Full-Stack JavaScript Developer',
-  'Remote Developer Pakistan'
-];
-
-/** * CRITICAL: Absolute URL is required for Social Media Crawlers.
- * Ensure huh-logoss.png is in your /public folder.
- * Added version query to bypass stale social media caches.
- */
-const OG_IMAGE = `${BASE_URL}/huh-logoss.png?v=1.3`;
-
-// ─────────────────────────────────────────────────────────────────────────────
-// STATIC FALLBACK
-// ─────────────────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
@@ -41,33 +13,19 @@ export const metadata: Metadata = {
     template: `%s | ${FULL_NAME}`,
   },
   description: DESCRIPTION,
-  keywords: KEYWORDS,
+  keywords: ['Hammad Ul Haq', 'MERN Stack', 'Next.js', 'AI Engineer', 'Lahore'],
+  
+  // 1. Canonical URL (Crucial for Google)
   alternates: {
     canonical: '/',
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
-    // PINTEREST DOMAIN VERIFICATION
-    other: {
-      'p:domain_verify': ['0cf888d55a0f949177131b224bb96f2f'],
-    },
-  },
+
+  // 2. OpenGraph (Facebook, LinkedIn, Discord)
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: `${FULL_NAME} — Portfolio`,
+    siteName: FULL_NAME,
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
     images: [
@@ -79,66 +37,26 @@ export const metadata: Metadata = {
       },
     ],
   },
+
+  // 3. Twitter / X Optimization
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary_large_image', // This makes the big preview image on X
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
-    images: [OG_IMAGE],
+    images: [OG_IMAGE], // Must be an absolute URL
+    creator: '@your_twitter_handle', // Optional: Add your handle here
+  },
+
+  // 4. Search Console & Verifications
+  verification: {
+    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
+    other: {
+      'p:domain_verify': ['0cf888d55a0f949177131b224bb96f2f'],
+    },
   },
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC METADATA — Prevents build-time "TypeError: undefined"
-// ─────────────────────────────────────────────────────────────────────────────
-type Props = {
-  params: Promise<Record<string, string>>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
-
-export async function generateMetadata(
-  { searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // Await searchParams and fallback to prevent crash during static generation
-  const resolvedSearchParams = (await searchParams) ?? {};
-  const version = typeof resolvedSearchParams.v === 'string' ? resolvedSearchParams.v : undefined;
-
-  const isDemo = version === '1';
-
-  const title = isDemo
-    ? 'Smart Video Insight Demo | AI Video Analysis'
-    : TITLE_DEFAULT;
-
-  const description = isDemo
-    ? 'Experience Smart Video Insight — an AI-powered video analysis tool built with Next.js and Agentic AI.'
-    : DESCRIPTION;
-
-  return {
-    ...metadata,
-    title,
-    description,
-    alternates: {
-      canonical: isDemo ? '/?v=1' : '/',
-    },
-    openGraph: {
-      ...metadata.openGraph,
-      url: isDemo ? `${BASE_URL}/?v=1` : BASE_URL,
-      title,
-      description,
-      images: [{ url: OG_IMAGE, width: 1200, height: 630 }],
-    },
-    twitter: {
-      ...metadata.twitter,
-      title,
-      description,
-      images: [OG_IMAGE],
-    },
-  };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// STRUCTURED DATA (JSON-LD)
-// ─────────────────────────────────────────────────────────────────────────────
+// JSON-LD for "Rich Results" in Google
 export function PersonJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
@@ -146,23 +64,12 @@ export function PersonJsonLd() {
     name: FULL_NAME,
     url: BASE_URL,
     image: OG_IMAGE,
-    sameAs: [LINKEDIN, GITHUB],
-    jobTitle: 'Full-Stack Developer & AI Engineer',
-    description: DESCRIPTION,
-    knowsAbout: [
-      'MERN Stack', 'Next.js', 'FastAPI', 'Agentic AI', 
-      'LLM Integration', 'MongoDB', 'Socket.io'
+    sameAs: [
+      'https://linkedin.com/in/hammad-ul-haq-07b62a357',
+      'https://github.com/HAMMADKHANLODHI'
     ],
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Lahore',
-      addressCountry: 'PK',
-    },
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Freelance / Self-Employed',
-    },
-    availableLanguage: ['English', 'Urdu'],
+    jobTitle: 'Full-Stack Developer & AI Engineer',
+    address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
   };
 
   return (
