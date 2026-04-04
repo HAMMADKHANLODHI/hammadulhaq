@@ -1,11 +1,28 @@
 import type { Metadata } from 'next';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// CONSTANTS — Single Source of Truth
+// ─────────────────────────────────────────────────────────────────────────────
 const BASE_URL = 'https://hammadulhaq-seven.vercel.app';
 const FULL_NAME = 'Hammad Ul Haq';
-const TITLE_DEFAULT = 'Hammad Ul Haq | Full-Stack & AI Engineer';
-const DESCRIPTION = 'Full-Stack Developer & AI Engineer specializing in MERN Stack, Next.js, and Agentic AI. Developer of real-time ERP systems and AI solutions in Lahore, Pakistan.';
-const OG_IMAGE = `${BASE_URL}/huh-logoss.png`;
+const LINKEDIN = 'https://linkedin.com/in/hammad-ul-haq-07b62a357';
+const GITHUB = 'https://github.com/HAMMADKHANLODHI';
 
+const TITLE_DEFAULT = 'Hammad Ul Haq | Full-Stack & AI Engineer — MERN & Next.js';
+const DESCRIPTION =
+  'Full-Stack Developer & AI Engineer specializing in MERN Stack, Next.js, and Agentic AI. ' +
+  'Based in Lahore, Pakistan.';
+
+const KEYWORDS = [
+  'Hammad Ul Haq', 'MERN Stack Developer Lahore', 'Next.js Developer Pakistan',
+  'AI Engineer', 'Agentic AI', 'crewAI Developer', 'FastAPI Python'
+];
+
+const OG_IMAGE = `${BASE_URL}/huh-logoss.png?v=1.3`;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// METADATA EXPORT
+// ─────────────────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
@@ -13,19 +30,32 @@ export const metadata: Metadata = {
     template: `%s | ${FULL_NAME}`,
   },
   description: DESCRIPTION,
-  keywords: ['Hammad Ul Haq', 'MERN Stack', 'Next.js', 'AI Engineer', 'Lahore'],
-  
-  // 1. Canonical URL (Crucial for Google)
+  keywords: KEYWORDS,
   alternates: {
     canonical: '/',
   },
-
-  // 2. OpenGraph (Facebook, LinkedIn, Discord)
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
+    other: {
+      'p:domain_verify': ['0cf888d55a0f949177131b224bb96f2f'],
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: FULL_NAME,
+    siteName: `${FULL_NAME} — Portfolio`,
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
     images: [
@@ -37,26 +67,17 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  // 3. Twitter / X Optimization
   twitter: {
-    card: 'summary_large_image', // This makes the big preview image on X
+    card: 'summary_large_image',
     title: TITLE_DEFAULT,
     description: DESCRIPTION,
-    images: [OG_IMAGE], // Must be an absolute URL
-    creator: '@your_twitter_handle', // Optional: Add your handle here
-  },
-
-  // 4. Search Console & Verifications
-  verification: {
-    google: 'QcJPE3ifkwAO4Rz6KBEk5GuC8IwI8QXr0GESs8ehlSg',
-    other: {
-      'p:domain_verify': ['0cf888d55a0f949177131b224bb96f2f'],
-    },
+    images: [OG_IMAGE],
   },
 };
 
-// JSON-LD for "Rich Results" in Google
+// ─────────────────────────────────────────────────────────────────────────────
+// STRUCTURED DATA (JSON-LD)
+// ─────────────────────────────────────────────────────────────────────────────
 export function PersonJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
@@ -64,12 +85,15 @@ export function PersonJsonLd() {
     name: FULL_NAME,
     url: BASE_URL,
     image: OG_IMAGE,
-    sameAs: [
-      'https://linkedin.com/in/hammad-ul-haq-07b62a357',
-      'https://github.com/HAMMADKHANLODHI'
-    ],
+    sameAs: [LINKEDIN, GITHUB],
     jobTitle: 'Full-Stack Developer & AI Engineer',
-    address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
+    description: DESCRIPTION,
+    knowsAbout: ['MERN Stack', 'Next.js', 'FastAPI', 'Agentic AI', 'MongoDB'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Lahore',
+      addressCountry: 'PK',
+    },
   };
 
   return (
